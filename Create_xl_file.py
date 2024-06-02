@@ -1,6 +1,6 @@
 
 import openpyxl
-from openpyxl.styles import Font
+from openpyxl.styles import Font, PatternFill, Alignment
 
 # Create file & sheets
 wb = openpyxl.Workbook()
@@ -18,6 +18,11 @@ col = ["A", "B", "C", "D", "E"]
 for sheet in [sheet1, sheet2]:
     for x in col:
         sheet[f"{x}1"].font = Font(bold = True, size = 12, underline = "single")
+        sheet[f"{x}1"].fill = PatternFill(fill_type= "solid", start_color= "00FFFFCC", end_color= "00FFFFCC")
+        sheet[f"{x}1"].alignment = Alignment(horizontal= "center", vertical= "center")
+        sheet.column_dimensions[x].width = 15
+        
 
 # Save file
 wb.save("Lab_Inventory.xlsx")
+print("Lab Inventory file created.")
